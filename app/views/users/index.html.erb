@@ -7,5 +7,27 @@
 <%= render 'books/form', book: @book %>
 </div>
 
+<div class="col-xs-9">
 <h2>Users</h2>
-<%= render 'index',users: @users %>
+
+<table class="table table-hover table-inverse">
+<thead>
+ <tr>
+   <th></th>
+   <th>image</th>
+   <th>name</th>
+   <th colspan="3"></th>
+</tr>
+</thead>
+<tbody>
+    <% @users.each do |user| %>
+  <tr>
+   <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+   <td><%- user.name %></td>
+   <td><%=link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
