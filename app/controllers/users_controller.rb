@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-   before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -18,10 +19,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
-      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user),notice = "You have updated user successfully."
     else
-      flash[:alert] = "Profil was not successfully update."
       render "edit"
     end
   end
