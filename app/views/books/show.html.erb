@@ -5,7 +5,7 @@
     <h2>User info</h2>
     <%= render 'users/info', user: @book.user %>
 
-    <h2>New book</h2>
+    <h2 class="mt-3">New book</h2>
     <%= render 'books/form', book: @book_new %>
   </div>
 
@@ -25,12 +25,16 @@
         <td><%= render 'favorites/btn', book: @book %></td>
         <td>コメント数: <%= @book.book_comments.count %></td>
       <% if @book.user == current_user %>
-        <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success" %></td>
-        <td><%= link_to "Destroy", @book, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn-sm btn-danger" %></td>
+        <td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}"  %></td>
+        <td><%= link_to "Destroy", @book, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 
       <% end %>
-
+      </tr>
     </table>
+
+     <%= render "book_comments/index", book: @book %>
+     <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+
   </div>
 </div>
-</div>
+</div>https://app.slack.com/client/T7SGCMB33/C05QXSVQ4JD
