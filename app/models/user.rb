@@ -41,16 +41,15 @@ class User < ApplicationRecord
  end
 
 #検索機能
- def self.looks(search, word)
-   if search == 'parfect'
-     users = User.where("name Like?", "#[word}")
-   elseif search == 'forward'
-     users = User.where("name Like?", "#{word}%")
-   elseif search == 'backward'
-     users == User.where("name Like?", "%#{word}")
-   else search == 'partial'
-     users = User.where("name Like?", "%#{word}%")
-   end
- end
-
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
+    else
+      User.where('name LIKE ?', '%' + content + '%')
+    end
+  end
 end
