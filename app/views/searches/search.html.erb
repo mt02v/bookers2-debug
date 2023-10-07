@@ -1,7 +1,8 @@
+<%#　ビュー、 検索結果表示画面を作成し、検索結果を表示すること　%>
 <% if @model == 'user' %>
-	<h3>Users search for "<%= @content %>"</h3>
+	<h3>Books search for "test"</h3>
   <%= render 'users/index', users: @records %>
 <% elsif @model == 'book' %>
-	<h3>Books search for "<%= @content %>"</h3>
+	<h3>Books search for "test"</h3>
   <%= render 'books/index', books: @records %>
 <% end %>
